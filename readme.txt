@@ -1,0 +1,1 @@
+Dans MinGW64 -> gcc main.c calcul.c graph.c -o programme.exe -lavformat -lavcodec -lavutil -lswscale -lSDL2
