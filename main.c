@@ -117,7 +117,7 @@ int main(int argc, char *argv[])
 					// On actualise les deux matrices grises en échangeant les pointeurs mémoires
 					uint8_t *temp = matrice_grise_ancienne;
 					matrice_grise_ancienne = matrice_grise;
-					matrice_grise = temp; // matrice_grise devient pointe vers l'ancienne mais on la remodifie juste après -> Une-Deux Ronaldo - Roberto Carlos
+					matrice_grise = temp; // matrice_grise devient un pointeur vers l'ancienne, puis sera modifiée -> on recycle l'espace mémoire utilisé
 					
 					target_data[0] = matrice_grise; // Sans ça, il va prendre la mauvaise adresse une fois sur deux
 					
