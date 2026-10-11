@@ -30,6 +30,7 @@ $$0 = \frac{\partial I}{\partial x}V_x+\frac{\partial I}{\partial y}V_y+\frac{\p
 
 $V_x$ et $V_y$ sont alors les quantités recherchées, puisqu'il s'agit de la vitesse de déplacement de l'intensité du pixel considéré, il s'agit de l'**équation du flot optique**.
 L'objectif étant de mesurer le mouvement apparent des objets, on va chercher une fenêtre de pixels (de taille 1x1, 2x2, 3x3 ou autre). Si on a un mouvement apparent, alors les pixels de la fenêtre vont partager les mêmes $V_x$ et $V_y$. On dispose alors de $N$ pixels caractérisés par $(x_i,y_i,t_i)$ pour $i\in \{1,...,N\}$ qui vérifie la même équation de flot optique. On a alors le système suivant :
+
 $$\begin{cases}
 \frac{\partial I}{\partial x_1}V_x+\frac{\partial I}{\partial y_1}V_y = -\frac{\partial I}{\partial t_1} \\
 \frac{\partial I}{\partial x_2}V_x+\frac{\partial I}{\partial y_2}V_y = -\frac{\partial I}{\partial t_2} \\
@@ -38,15 +39,18 @@ $$\begin{cases}
 \end{cases}$$
 
 Qui se traduit matriciellement par $AV=B$ avec :
+
 $$A = \begin{pmatrix} \frac{\partial I}{\partial x_1} & \frac{\partial I}{\partial y_1} \\ 
 . & . \\
 . & . \\
 \frac{\partial I}{\partial x_N} & \frac{\partial I}{\partial y_N}\end{pmatrix}$$
+
 $$B = \begin{pmatrix} \frac{\partial I}{\partial t_1} \\ 
 . \\
 . \\
 \frac{\partial I}{\partial t_N}
 \end{pmatrix}$$
+
 $$V = \begin{pmatrix} V_x \\ V_y \end{pmatrix}$$
 
 Il suffit ensuite de faire confiance à la méthode des moindres carrés pour nous donner une solution exploitable de $V$ pour ce système. À défaut d'une solution exacte, si la méthode des moindres carrés aboutie à un résultat $V$, il s'agira bien de la tendance de déplacement : Si sur 9 pixels, on en trouve 7 qui semble se déplacer vers le haut, et 2 vers le bas, le système n'aura pas de solution exacte mais la méthode des moindres carrés va bien nous donner un vecteur $V$ dirigé vers le haut.
